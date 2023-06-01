@@ -8,23 +8,8 @@ seed(random_seed)
 
 def Import_data(H, data, n, Rs, Qmax, change):
 	global n_default, Rs_default, Qmax_default
-	# while True:
-	# 	try:
-	# 		data = int(input("BacGiang(1)\nHaNoi(2)\nLamDong(3)\nSonLa(4)\nThaiBinh(5)\nData(1-5): "))
-	# 		change = int(input("Change n(1), R(2), Qmax(3): "))
-	# 		n = int(input("n: "))
-	# 		Rs = int(input("Rs: "))
-	# 		Qmax = int(input("Qmax: "))
-	# 		if (data >= 1 and data <= 5) and change >= 1 and change <= 3:
-	# 			break
-	# 	except:
-	# 		print("Wrong input")
 
-	data = 2
-	n = 100
-	Rs = 40
-	Qmax = 10
-	change = 1
+	
 
 	file = ["bacgiang", "hanoi", "lamdong", "sonla", "thaibinh"]
 	Dataset = [[[n+n_step*i,Rs, Qmax] for i in range(dataset_num)], [[n, Rs + Rs_step*i, Qmax] for i in range(dataset_num)], [[n, Rs, Qmax + Qmax_step*i] for i in range(dataset_num)]]
