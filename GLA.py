@@ -252,11 +252,11 @@ def main(a,b,c,d,e):
 		exportData(average_S, average_runtimeCov, Dataset, file, "GLA", H, i)
 
 if __name__ == "__main__":
-	seed(0)
+	seed(random_seed)
 	main(a = 2, b = 100, c = 40, d = 10, e = 1)
-	seed(0)
+	seed(random_seed)
 	main(a = 2, b = 400, c = 20, d = 10, e = 2)
-	seed(0)
+	seed(random_seed)
 	main(a = 4, b = 100, c = 40, d = 10, e = 1)
-	seed(0)
+	seed(random_seed)
 	main(a = 4, b = 400, c = 20, d = 10, e = 2)
