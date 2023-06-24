@@ -9,8 +9,6 @@ seed(random_seed)
 def Import_data(H, data, n, Rs, Qmax, change):
 	global n_default, Rs_default, Qmax_default
 
-	
-
 	file = ["bacgiang", "hanoi", "lamdong", "sonla", "thaibinh"]
 	Dataset = [[[n+n_step*i,Rs, Qmax] for i in range(dataset_num)], [[n, Rs + Rs_step*i, Qmax] for i in range(dataset_num)], [[n, Rs, Qmax + Qmax_step*i] for i in range(dataset_num)]]
 
@@ -37,24 +35,62 @@ def Import_data(H, data, n, Rs, Qmax, change):
 
 	Dataset = Dataset[change-1]
 
-	Targets, Qs = place_random(Dataset, data_asc)
+	Targets, Qs = place_random(Dataset, data_asc, change)
 
 	return Dataset, Targets, Qs, file, change - 1
 
-def place_random(Dataset, data_asc):
-	Targets = []
-	Qs = []
-	for j in range(len(Dataset)):
-		n = Dataset[j][0]
-		Qmax = Dataset[j][2]
+def place_random(Dataset, data_asc, change):
+	if change == 1:
+		Targets = []
+		Qs = []
+		for j in range(len(Dataset)):
+			n = Dataset[j][0]
+			T = []
+
+			for k in range(n):
+				x, y = random()*H, random()*H
+				z = data_asc[int(x//25)][int(y//25)]
+				T.append([x,y,z])
+
+			Qmax = Dataset[j][2]
+			Q = [randint(1,Qmax) for _ in range(n)]
+
+			Qs.append(Q)
+			Targets.append(T.copy())
+
+	elif change == 2:
+		Targets = []
+		Qs = []
+		
+		n = Dataset[0][0]
 		T = []
 		for k in range(n):
 			x, y = random()*H, random()*H
 			z = data_asc[int(x//25)][int(y//25)]
 			T.append([x,y,z])
 
-		Qs.append([randint(1,Qmax) for _ in range(n)])
-		Targets.append(T.copy())
+		Qmax = Dataset[0][2]
+		Q = [randint(1,Qmax) for _ in range(n)]
+
+		for j in range(len(Dataset)):
+			Qs.append(Q.copy())
+			Targets.append(T.copy())
+
+	elif change == 3:
+		Targets = []
+		Qs = []
+		n = Dataset[0][0]
+		T = []
+		for k in range(n):
+			x, y = random()*H, random()*H
+			z = data_asc[int(x//25)][int(y//25)]
+			T.append([x,y,z])
+
+		for j in range(len(Dataset)):
+			Qmax = Dataset[j][2]
+			Q = [randint(1,Qmax) for _ in range(n)]
+			Qs.append(Q)
+			Targets.append(T.copy())
 
 	return Targets, Qs
 
